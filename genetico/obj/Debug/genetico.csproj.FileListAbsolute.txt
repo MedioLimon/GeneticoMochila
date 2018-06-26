@@ -1,0 +1,44 @@
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\bin\Debug\genetico.exe
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\bin\Debug\genetico.pdb
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\obj\Debug\genetico.csprojAssemblyReference.cache
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\obj\Debug\genetico.exe
+D:\Usuarios\Documentos\Visual Studio 2017\Projects\genetico\genetico\obj\Debug\genetico.pdb
+E:\Repositorios\Genetico\genetico\bin\Debug\genetico.exe
+E:\Repositorios\Genetico\genetico\bin\Debug\genetico.pdb
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.csprojResolveAssemblyReference.cache
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.exe
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.pdb
+E:\Repositorios\Genetico\genetico\bin\Debug\Bunifu_UI_v1.5.3.dll
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.Form1.resources
+E:\Repositorios\Genetico\genetico\obj\Debug\genetico.csproj.GenerateResource.Cache
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\bin\Debug\genetico.exe
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\bin\Debug\genetico.pdb
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\bin\Debug\Bunifu_UI_v1.5.3.dll
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.csprojResolveAssemblyReference.cache
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.Form1.resources
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.csproj.GenerateResource.Cache
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.exe
+E:\UPP\9no Cuatrimestre\Sistemas Inteligentes - Anabel\P2\Genetico\genetico\obj\Debug\genetico.pdb
+E:\Repositorios\Mochila\genetico\bin\Debug\genetico.exe
+E:\Repositorios\Mochila\genetico\bin\Debug\genetico.pdb
+E:\Repositorios\Mochila\genetico\bin\Debug\Bunifu_UI_v1.5.3.dll
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.csprojResolveAssemblyReference.cache
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.Form1.resources
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.csproj.GenerateResource.Cache
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.exe
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.pdb
+E:\Repositorios\Mochila\genetico\obj\Debug\genetico.Properties.Resources.resources
+D:\Usuarios\Descargas\GeneticoMochila\genetico\bin\Debug\genetico.exe
+D:\Usuarios\Descargas\GeneticoMochila\genetico\bin\Debug\genetico.pdb
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csprojAssemblyReference.cache
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.Form1.resources
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.Properties.Resources.resources
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csproj.GenerateResource.cache
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csproj.CopyComplete
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.exe
+D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.pdb
