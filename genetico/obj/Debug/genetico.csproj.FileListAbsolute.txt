@@ -42,3 +42,13 @@ D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csproj.CoreCom
 D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.csproj.CopyComplete
 D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.exe
 D:\Usuarios\Descargas\GeneticoMochila\genetico\obj\Debug\genetico.pdb
+E:\Repositorios\GeneticoMochila\genetico\bin\Debug\genetico.exe
+E:\Repositorios\GeneticoMochila\genetico\bin\Debug\genetico.pdb
+E:\Repositorios\GeneticoMochila\genetico\bin\Debug\Bunifu_UI_v1.5.3.dll
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.csprojResolveAssemblyReference.cache
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.Form1.resources
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.Properties.Resources.resources
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.csproj.GenerateResource.Cache
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.csproj.CoreCompileInputs.cache
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.exe
+E:\Repositorios\GeneticoMochila\genetico\obj\Debug\genetico.pdb

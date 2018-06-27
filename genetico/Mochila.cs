@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text;
 
 namespace genetico
 {
@@ -13,6 +14,8 @@ namespace genetico
         Opcion combinaciones;
         Padre padres; //variable que contendrá la lista de padres
         ElArca mejores; //variable que contendrá la lista de los resultados
+        int cant_obj = 0;
+
 
         double capacidad;
         String respuesta;
@@ -126,7 +129,7 @@ namespace genetico
                 cont_obj++;
                 cont = cont.siguiente;
             }
-
+            
 
             for (int i = 0; i < t_poblacion; i++) //for para generar a todos los individuos
             {
@@ -152,6 +155,7 @@ namespace genetico
                     aux.siguiente = nuevo; //guardamos el individuo
                 }
 
+                this.cant_obj = cont_obj;
                 cuerpo = ""; //vaciamos el cuerpo para el siguiente individuo
 
             }
@@ -176,7 +180,7 @@ namespace genetico
                 aux = aux_o.combinacion;
                 objeto = objetos;
 
-                for (int i = 0; i < aux.Length - 1; i++)
+                for (int i = 0; i < aux.Length-1; i++) 
                 {
                     peso += Int32.Parse("" + aux[i]) * objeto.peso;
                     ganancia += Int32.Parse("" + aux[i]) * objeto.ganancia;
@@ -302,8 +306,65 @@ namespace genetico
                 aux = aux.siguiente;
             }
         }
+//
+//REPARACIÓN ALEATORIA DENISE 27 DE JUNIO DEL 2018
+//
+        public void reparacion_aleatoria()
+        {
+            Opcion auxVectores = combinaciones;
+            while (auxVectores != null) //Mientras existan vectores
+            {
+                Random rand = new Random(); //objeto para generar numeros aleatorios
+                String cuerpo = auxVectores.combinacion;
+                while(calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
+                {
+                    int i;
 
-        #region Denise
+                    do
+                    {
+                        i = rand.Next(0, cuerpo.Length);//Valores random entre 0 y el largo de la cadena -1
+                    } while(cuerpo[i] != '1');
+
+                    if (i == 0)//Caso si es la primera posición
+                    {
+                        cuerpo = cuerpo.Remove(0, 1);//Remueve el primer elemento
+                        cuerpo = cuerpo.Insert(0, "0");//Agrega un 0 en la primera posición
+                    }
+                    else if (i == cuerpo.Length - 1) //Caso en que este en la última posición
+                    {
+                        cuerpo = cuerpo.Remove(cuerpo.Length - 1, 1);//Remueve el último elemento
+                        cuerpo = cuerpo.Insert(cuerpo.Length - 1, "0");//Agrega un 0 en la última posición
+                    }
+                    else //Caso cualquier otra posición intermedia 
+                    {
+                        String aux_inicio = cuerpo.Substring(0, i);//Salva del inicio a un aposición anterior al indice
+                        String aux_fin = cuerpo.Substring(i + 1, cuerpo.Length - i - 1);//Salva del indice + 1 al final
+                        cuerpo = ""; //Limpia cuerpo
+                        cuerpo = aux_inicio + "0" + aux_fin; //Concatena todo
+                    }
+                }//while termina de recorrer todas las combinaciones
+
+                auxVectores.combinacion = cuerpo; //Se hace la asignación aun cuando está no haya cambiado
+                auxVectores = auxVectores.siguiente; //Se evalua siguiente nodo
+            }
+        }
+
+        public bool calculo_peso_adecuado(String vector)//Puede que sólo reciba el vector
+        {
+            Individuo objeto = objetos;
+            double peso = 0;
+
+            for (int i = 0; i < vector.Length - 1 ; i++) //CHECAR si va -1
+            {
+                peso += Int32.Parse("" + vector[i]) * objeto.peso;
+                objeto = objeto.siguiente;
+            }
+
+            if (peso > capacidad) return true; //vardadero if(el peso excede) 
+            else return false; //sino, pues no xD
+        }
+
+        
 
         private double[] generarNumerosAleatorios(int size)
         {
@@ -354,8 +415,6 @@ namespace genetico
             }
         }
 
-        #endregion
-
         public void cruze(double p_cruce, int poblacion) //metodo para realizar el cruce
         {
             //Console.WriteLine("\n\t\t\t\t ----Cruce: " + p_cruce + " | Nueva poblacion---- ");
@@ -385,8 +444,8 @@ namespace genetico
 
                     if (chance[0] <= p_cruce) //se va a realizar el cruce
                     {
-                        uno = aleatorio.Next(0, 8);
-                        dos = aleatorio.Next(0, 8);
+                        uno = aleatorio.Next(0, this.cant_obj);
+                        dos = aleatorio.Next(0, this.cant_obj);
 
                         if (uno < dos)
                         {
@@ -407,7 +466,7 @@ namespace genetico
                         }
                         else
                         {
-                            for (int j = 0; j < auxPadre.bite.Length - 1; j++)
+                            for (int j = 0; j < auxPadre.bite.Length - 1 ; j++)
                             {
                                 if (j <= dos || j >= uno)
                                 {

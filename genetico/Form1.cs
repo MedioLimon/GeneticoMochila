@@ -88,7 +88,7 @@ namespace genetico
         }
 
         private void btnCapacidadMochila_Click(object sender, EventArgs e)
-        {
+        {            
             if (ofdAbrirArchivo.ShowDialog() == DialogResult.OK)
             {
                 using (StreamReader sr = new StreamReader(ofdAbrirArchivo.FileName))
@@ -332,6 +332,9 @@ namespace genetico
                                                             break;
                                                         case 1:
                                                             mochila.validar_uno();
+                                                            break;
+                                                        case 2:
+                                                            mochila.reparacion_aleatoria();
                                                             break;
                                                         default:
                                                             break;

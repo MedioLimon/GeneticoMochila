@@ -46,12 +46,12 @@
             this.btnGenetico = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnGanancias = new Bunifu.Framework.UI.BunifuThinButton2();
             this.gbxMochila = new System.Windows.Forms.GroupBox();
+            this.cbOpciones = new System.Windows.Forms.ComboBox();
             this.btnCapacidadMochila = new Bunifu.Framework.UI.BunifuThinButton2();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPesos = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnResOpt = new Bunifu.Framework.UI.BunifuThinButton2();
             this.ofdAbrirArchivo = new System.Windows.Forms.OpenFileDialog();
-            this.cbOpciones = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbxMochila.SuspendLayout();
@@ -336,6 +336,24 @@
             this.gbxMochila.TabStop = false;
             this.gbxMochila.Visible = false;
             // 
+            // cbOpciones
+            // 
+            this.cbOpciones.BackColor = System.Drawing.Color.SeaGreen;
+            this.cbOpciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbOpciones.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.cbOpciones.ForeColor = System.Drawing.Color.White;
+            this.cbOpciones.FormattingEnabled = true;
+            this.cbOpciones.Items.AddRange(new object[] {
+            "Igualar a 0",
+            "Formula",
+            "Reparación aleatoria",
+            "Reparación voraz"});
+            this.cbOpciones.Location = new System.Drawing.Point(41, 197);
+            this.cbOpciones.Name = "cbOpciones";
+            this.cbOpciones.Size = new System.Drawing.Size(246, 28);
+            this.cbOpciones.TabIndex = 25;
+            this.cbOpciones.Text = "Tipo de penalización";
+            // 
             // btnCapacidadMochila
             // 
             this.btnCapacidadMochila.ActiveBorderThickness = 1;
@@ -429,22 +447,6 @@
             // ofdAbrirArchivo
             // 
             this.ofdAbrirArchivo.FileName = "openFileDialog1";
-            // 
-            // cbOpciones
-            // 
-            this.cbOpciones.BackColor = System.Drawing.Color.SeaGreen;
-            this.cbOpciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbOpciones.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.cbOpciones.FormattingEnabled = true;
-            this.cbOpciones.Items.AddRange(new object[] {
-            "Igualar a 0",
-            "Formula",
-            "Reparación aleatoria",
-            "Reparación voraz"});
-            this.cbOpciones.Location = new System.Drawing.Point(41, 197);
-            this.cbOpciones.Name = "cbOpciones";
-            this.cbOpciones.Size = new System.Drawing.Size(246, 28);
-            this.cbOpciones.TabIndex = 25;
             // 
             // Form1
             // 
