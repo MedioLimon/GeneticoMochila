@@ -14,7 +14,7 @@ namespace genetico
         Opcion combinaciones;
         Padre padres; //variable que contendrá la lista de padres
         ElArca mejores; //variable que contendrá la lista de los resultados
-        int cant_obj = 0;
+        int cant_obj;
 
 
         double capacidad;
@@ -26,8 +26,11 @@ namespace genetico
         {
             objetos = null;
             combinaciones = null;
+            padres = null;
+            mejores = null;
             capacidad = 0;
             respuesta = "";
+            cant_obj = 0;
         }
 
         public static Mochila getInstante()
@@ -433,98 +436,105 @@ namespace genetico
 
             combinaciones = null;
 
-            for (int i = 0; i < chance.Length; i++)
+            try
             {
-                if (auxPadre != null)
+                for (int i = 0; i < chance.Length; i++)
                 {
-                    //asignacion de la pareja
-                    padre1 = auxPadre;
-                    auxPadre = auxPadre.siguiente;
-                    padre2 = auxPadre;
-
-                    if (chance[0] <= p_cruce) //se va a realizar el cruce
+                    if (auxPadre != null)
                     {
-                        uno = aleatorio.Next(0, this.cant_obj);
-                        dos = aleatorio.Next(0, this.cant_obj);
+                        //asignacion de la pareja
+                        padre1 = auxPadre;
+                        auxPadre = auxPadre.siguiente;
+                        padre2 = auxPadre;
 
-                        if (uno < dos)
+                        if (chance[0] <= p_cruce) //se va a realizar el cruce
                         {
-                            //obtener bits de los padres
-                            for (int j = 0; j < auxPadre.bite.Length - 1; j++)
+                            uno = aleatorio.Next(0, this.cant_obj);
+                            dos = aleatorio.Next(0, this.cant_obj);
+
+                            if (uno < dos)
                             {
-                                if (j >= uno && j <= dos)
+                                //obtener bits de los padres
+                                for (int j = 0; j < auxPadre.bite.Length - 1; j++)
                                 {
-                                    a_cambiar[1] += padre1.bite[j];
-                                    a_cambiar[0] += padre2.bite[j];
-                                }
-                                else
-                                {
-                                    a_cambiar[0] += padre1.bite[j];
-                                    a_cambiar[1] += padre2.bite[j];
+                                    if (j >= uno && j <= dos)
+                                    {
+                                        a_cambiar[1] += padre1.bite[j];
+                                        a_cambiar[0] += padre2.bite[j];
+                                    }
+                                    else
+                                    {
+                                        a_cambiar[0] += padre1.bite[j];
+                                        a_cambiar[1] += padre2.bite[j];
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            for (int j = 0; j < auxPadre.bite.Length - 1 ; j++)
+                            else
                             {
-                                if (j <= dos || j >= uno)
+                                for (int j = 0; j < auxPadre.bite.Length - 1; j++)
                                 {
-                                    a_cambiar[1] += padre1.bite[j];
-                                    a_cambiar[0] += padre2.bite[j];
-                                }
+                                    if (j <= dos || j >= uno)
+                                    {
+                                        a_cambiar[1] += padre1.bite[j];
+                                        a_cambiar[0] += padre2.bite[j];
+                                    }
 
-                                else
-                                {
-                                    a_cambiar[0] += padre1.bite[j];
-                                    a_cambiar[1] += padre2.bite[j];
+                                    else
+                                    {
+                                        a_cambiar[0] += padre1.bite[j];
+                                        a_cambiar[1] += padre2.bite[j];
+                                    }
                                 }
+                            }
+
+                            if (combinaciones == null)
+                            {
+                                nuevo = new Opcion(a_cambiar[0]);
+                                combinaciones = nuevo;
+                                nuevo.siguiente = new Opcion(a_cambiar[1]);
+                            }
+                            else
+                            {
+                                aux = combinaciones;
+
+                                while (aux.siguiente != null)
+                                    aux = aux.siguiente;
+
+                                nuevo = new Opcion(a_cambiar[0]);
+                                aux.siguiente = nuevo;
+                                nuevo.siguiente = new Opcion(a_cambiar[1]);
+                            }
+                        }
+                        else //no hay cruce
+                        {
+                            if (combinaciones == null)
+                            {
+                                nuevo = new Opcion(padre1.bite);
+                                combinaciones = nuevo;
+                                nuevo.siguiente = new Opcion(padre2.bite);
+                            }
+                            else
+                            {
+                                aux = combinaciones;
+
+                                while (aux.siguiente != null)
+                                    aux = aux.siguiente;
+
+                                nuevo = new Opcion(padre1.bite);
+                                aux.siguiente = nuevo;
+                                nuevo.siguiente = new Opcion(padre2.bite);
                             }
                         }
 
-                        if (combinaciones == null)
-                        {
-                            nuevo = new Opcion(a_cambiar[0]);
-                            combinaciones = nuevo;
-                            nuevo.siguiente = new Opcion(a_cambiar[1]);
-                        }
-                        else
-                        {
-                            aux = combinaciones;
-
-                            while (aux.siguiente != null)
-                                aux = aux.siguiente;
-
-                            nuevo = new Opcion(a_cambiar[0]);
-                            aux.siguiente = nuevo;
-                            nuevo.siguiente = new Opcion(a_cambiar[1]);
-                        }
+                        a_cambiar[0] = "";
+                        a_cambiar[1] = "";
+                        auxPadre = auxPadre.siguiente;
                     }
-                    else //no hay cruce
-                    {
-                        if (combinaciones == null)
-                        {
-                            nuevo = new Opcion(padre1.bite);
-                            combinaciones = nuevo;
-                            nuevo.siguiente = new Opcion(padre2.bite);
-                        }
-                        else
-                        {
-                            aux = combinaciones;
-
-                            while (aux.siguiente != null)
-                                aux = aux.siguiente;
-
-                            nuevo = new Opcion(padre1.bite);
-                            aux.siguiente = nuevo;
-                            nuevo.siguiente = new Opcion(padre2.bite);
-                        }
-                    }
-
-                    a_cambiar[0] = "";
-                    a_cambiar[1] = "";
-                    auxPadre = auxPadre.siguiente;
                 }
+            }
+            catch(Exception e)
+            {
+
             }
 
             padres = null;
@@ -597,5 +607,23 @@ namespace genetico
                 return "Sin combinaciones";
         }
 
+        public void reset_1()
+        {
+            combinaciones = null;
+            padres = null;
+            mejores = null;
+            cant_obj = 0;
+        }
+
+        public void reset_2()
+        {
+            objetos = null;
+            combinaciones = null;
+            padres = null;
+            mejores = null;
+            capacidad = 0;
+            respuesta = "";
+            cant_obj = 0;
+        }
     }
 }
