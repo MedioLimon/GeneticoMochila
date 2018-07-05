@@ -50,6 +50,8 @@ namespace genetico
             btnTitulo.Text = "ALGORITMO GENÉTICO PURO";
             tipoAlgoritmo = 0;
             btnCalcular.Visible = true;
+            lblX.Text = "";
+            Mochila.getInstante().reset_2();
         }
 
         private void btnMochila_Click(object sender, EventArgs e)
@@ -60,6 +62,7 @@ namespace genetico
             tipoAlgoritmo = 1;
             btnCalcular.Visible = false;
             btnCapacidadMochila.Visible = true;
+            lblX.Text = "";
             
         }
 
@@ -359,6 +362,8 @@ namespace genetico
                                                 {
                                                     lblX.Text = aux;
                                                 }
+
+                                                mochila.reset_1();
 
                                             }
                                             else
