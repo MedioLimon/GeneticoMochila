@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Text;
+//using System.Text;
 
 namespace genetico
 {
@@ -319,29 +319,13 @@ namespace genetico
                 while(calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
                 {
                     int i;
-
                     do
                     {
                         i = rand.Next(0, cuerpo.Length);//Valores random entre 0 y el largo de la cadena -1
                     } while(cuerpo[i] != '1');
 
-                    if (i == 0)//Caso si es la primera posición
-                    {
-                        cuerpo = cuerpo.Remove(0, 1);//Remueve el primer elemento
-                        cuerpo = cuerpo.Insert(0, "0");//Agrega un 0 en la primera posición
-                    }
-                    else if (i == cuerpo.Length - 1) //Caso en que este en la última posición
-                    {
-                        cuerpo = cuerpo.Remove(cuerpo.Length - 1, 1);//Remueve el último elemento
-                        cuerpo = cuerpo.Insert(cuerpo.Length - 1, "0");//Agrega un 0 en la última posición
-                    }
-                    else //Caso cualquier otra posición intermedia 
-                    {
-                        String aux_inicio = cuerpo.Substring(0, i);//Salva del inicio a un aposición anterior al indice
-                        String aux_fin = cuerpo.Substring(i + 1, cuerpo.Length - i - 1);//Salva del indice + 1 al final
-                        cuerpo = ""; //Limpia cuerpo
-                        cuerpo = aux_inicio + "0" + aux_fin; //Concatena todo
-                    }
+                    cuerpo = remover_peso(cuerpo, i);
+                   
                 }//while termina de recorrer todas las combinaciones
 
                 auxVectores.combinacion = cuerpo; //Se hace la asignación aun cuando está no haya cambiado
@@ -360,13 +344,104 @@ namespace genetico
                 objeto = objeto.siguiente;
             }
 
-            if (peso > capacidad) return true; //vardadero if(el peso excede) 
-            else return false; //sino, pues no xD
+            return (peso > capacidad) ? true : false; //vardadero if(el peso excede) 
+        }
+        //Termina edición Denise 27 DE JUNIO DEL 2018
+
+        //Denise cambios 03/07/2018
+        public void reparacion_ordenada()
+        {
+            Opcion auxVectores = combinaciones;
+            //Hacer función para traer matriz a la vida
+
+            while (auxVectores != null) //Mientras existan vectores
+            {
+                Random rand = new Random(); //objeto para generar numeros aleatorios
+                String cuerpo = auxVectores.combinacion;
+
+                double[,] matrix = remix_of_matrix(welcome_to_the_matrix()); //se cre y mezcla la matriz
+
+                while (calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
+                {
+                    int i, j = cant_obj - 1;
+                    do
+                    {
+                        i = (int)matrix[1, j];
+                        j--;
+                    }while (cuerpo[i] != '1');
+
+                    cuerpo = remover_peso(cuerpo, i);
+                }//while termina de recorrer todas las combinaciones
+
+                auxVectores.combinacion = cuerpo; //Se hace la asignación aun cuando está no haya cambiado
+                auxVectores = auxVectores.siguiente; //Se evalua siguiente nodo
+            }
         }
 
-        
+        string remover_peso(string cuerpo, int i)
+        {
+            if (i == 0)//Caso si es la primera posición
+            {
+                cuerpo = cuerpo.Remove(0, 1);//Remueve el primer elemento
+                cuerpo = cuerpo.Insert(0, "0");//Agrega un 0 en la primera posición
+            }
+            else if (i == cuerpo.Length - 1) //Caso en que este en la última posición
+            {
+                cuerpo = cuerpo.Remove(cuerpo.Length - 1, 1);//Remueve el último elemento
+                cuerpo = cuerpo.Insert(cuerpo.Length - 1, "0");//Agrega un 0 en la última posición
+            }
+            else //Caso cualquier otra posición intermedia 
+            {
+                String aux_inicio = cuerpo.Substring(0, i);//Salva del inicio a un aposición anterior al indice
+                String aux_fin = cuerpo.Substring(i + 1, cuerpo.Length - i - 1);//Salva del indice + 1 al final
+                cuerpo = ""; //Limpia cuerpo
+                cuerpo = aux_inicio + "0" + aux_fin; //Concatena todo
+            }
+            return cuerpo;
+        }
 
-        private double[] generarNumerosAleatorios(int size)
+        double[,] welcome_to_the_matrix()
+        {
+            Individuo auxObjetos = objetos;
+            double[,] matrix = new double[2,cant_obj]; //Puede que sea invertido
+
+            for(int i = 0; i < cant_obj && auxObjetos != null ; i++)
+            {   
+                matrix[0, i] = auxObjetos.ganancia / auxObjetos.peso;
+                matrix[1, i] = i;
+
+                auxObjetos = auxObjetos.siguiente;
+            }
+            return matrix;
+        }
+
+        double[,] remix_of_matrix(double[,] matrix)//Por el momento está de manera ascendente
+        {
+            //int pos;
+            double auxDiv, auxOrgLug;
+            for (int i = 0 ; i < cant_obj ; i++)
+            {
+                for (int j = 0; j < cant_obj - 1; j++)
+                {
+                    if (matrix[0, j] < matrix[0, j + 1])
+                    {
+                        //Cambio 
+                        //Parte divisiones
+                        auxDiv = matrix[0, j];
+                        matrix[0, j] = matrix[0, j + 1];
+                        matrix[0, j + 1] = auxDiv;
+                        //Parte posiciones
+                        auxOrgLug = matrix[1, j];
+                        matrix[1, j] = matrix[1, j + 1];
+                        matrix[1, j + 1] = auxOrgLug;
+                    }
+                }
+            }
+            return matrix;
+        }
+
+
+        double[] generarNumerosAleatorios(int size)
         {
             double[] array = new double[size];
             Random random = new Random();

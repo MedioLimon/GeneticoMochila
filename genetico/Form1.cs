@@ -336,6 +336,9 @@ namespace genetico
                                                         case 2:
                                                             mochila.reparacion_aleatoria();
                                                             break;
+                                                        case 3:
+                                                            mochila.reparacion_ordenada();
+                                                            break;
                                                         default:
                                                             break;
                                                     }

@@ -18,8 +18,6 @@ namespace genetico
         public double fnom;
         public double acumulado;
 
-        //public int cant_obj;
-
         public Opcion()
         {
             siguiente = null;
