@@ -347,7 +347,8 @@
             "Igualar a 0",
             "Formula",
             "Reparación aleatoria",
-            "Reparación voraz"});
+            "Reparación voraz",
+            "Propuesta"});
             this.cbOpciones.Location = new System.Drawing.Point(41, 197);
             this.cbOpciones.Name = "cbOpciones";
             this.cbOpciones.Size = new System.Drawing.Size(246, 28);

@@ -356,26 +356,27 @@ namespace genetico
         {
             Opcion auxVectores = combinaciones;
             //Hacer función para traer matriz a la vida
-
+            double[,] matrix = remix_of_matrix(welcome_to_the_matrix()); //se cre y mezcla la matriz
             while (auxVectores != null) //Mientras existan vectores
             {
-                Random rand = new Random(); //objeto para generar numeros aleatorios
                 String cuerpo = auxVectores.combinacion;
 
-                double[,] matrix = remix_of_matrix(welcome_to_the_matrix()); //se cre y mezcla la matriz
-
-                while (calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
+                //double[,] matrix = remix_of_matrix(welcome_to_the_matrix()); //se cre y mezcla la matriz
+                try
                 {
-                    int i, j = cant_obj - 1;
-                    do
+                    while (calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
                     {
-                        i = (int)matrix[1, j];
-                        j--;
-                    }while (cuerpo[i] != '1');
+                        int i, j = cant_obj - 1;
+                        do
+                        {
+                            i = (int)matrix[1, j];
+                            j--;
+                        } while (cuerpo[i] != '1');
 
-                    cuerpo = remover_peso(cuerpo, i);
-                }//while termina de recorrer todas las combinaciones
-
+                        cuerpo = remover_peso(cuerpo, i);
+                    }//while termina de recorrer todas las combinaciones
+                }
+                catch(Exception){}
                 auxVectores.combinacion = cuerpo; //Se hace la asignación aun cuando está no haya cambiado
                 auxVectores = auxVectores.siguiente; //Se evalua siguiente nodo
             }
@@ -420,7 +421,6 @@ namespace genetico
 
         double[,] remix_of_matrix(double[,] matrix)//Por el momento está de manera ascendente
         {
-            //int pos;
             double auxDiv, auxOrgLug;
             for (int i = 0 ; i < cant_obj ; i++)
             {
@@ -443,6 +443,76 @@ namespace genetico
             return matrix;
         }
 
+        //NUEVA PROPUESTA
+        public void reparacion_ordenada_recargado()
+        {
+            Opcion auxVectores = combinaciones;
+            //Hacer función para traer matriz a la vida
+            double[,] matrix = remix_of_matrix_recargado(welcome_to_the_matrix_recargado()); //se cre y mezcla la matriz
+            while (auxVectores != null) //Mientras existan vectores
+            {
+                String cuerpo = auxVectores.combinacion;
+
+                //double[,] matrix = remix_of_matrix(welcome_to_the_matrix()); //se cre y mezcla la matriz
+                try
+                {
+                    while (calculo_peso_adecuado(cuerpo))//Mientras exceda del peso
+                    {
+                        int i, j = 0;
+                        do
+                        {
+                            i = (int)matrix[1, j];
+                            j++;
+                        } while (cuerpo[i] != '1' && j < cant_obj);
+
+                        cuerpo = remover_peso(cuerpo, i);
+                    }//while termina de recorrer todas las combinaciones
+                }
+                catch (Exception) { }
+                auxVectores.combinacion = cuerpo; //Se hace la asignación aun cuando está no haya cambiado
+                auxVectores = auxVectores.siguiente; //Se evalua siguiente nodo
+            }
+        }
+
+        double[,] welcome_to_the_matrix_recargado()//Aquí guarda conforme las ganancias
+        {
+            Individuo auxObjetos = objetos;
+            double[,] matrix = new double[2, cant_obj]; //Puede que sea invertido
+
+            for (int i = 0; i < cant_obj && auxObjetos != null; i++)
+            {
+                matrix[0, i] = auxObjetos.ganancia;
+                matrix[1, i] = i;
+
+                auxObjetos = auxObjetos.siguiente;
+            }
+            return matrix;
+        }
+
+        double[,] remix_of_matrix_recargado(double[,] matrix)//Por el momento está de manera ascendente
+        {
+            double auxDiv, auxOrgLug;
+            for (int i = 0; i < cant_obj; i++)
+            {
+                for (int j = 0; j < cant_obj - 1; j++)
+                {
+                    if (matrix[0, j] > matrix[0, j + 1])
+                    {
+                        //Cambio 
+                        //Parte divisiones
+                        auxDiv = matrix[0, j];
+                        matrix[0, j] = matrix[0, j + 1];
+                        matrix[0, j + 1] = auxDiv;
+                        //Parte posiciones
+                        auxOrgLug = matrix[1, j];
+                        matrix[1, j] = matrix[1, j + 1];
+                        matrix[1, j + 1] = auxOrgLug;
+                    }
+                }
+            }
+            return matrix;
+        }
+        // --FIN-- NUEVA PROPUESTA
 
         double[] generarNumerosAleatorios(int size)
         {
@@ -532,34 +602,41 @@ namespace genetico
                                 //obtener bits de los padres
                                 for (int j = 0; j < auxPadre.bite.Length - 1; j++)
                                 {
-                                    if (j >= uno && j <= dos)
+                                    try
                                     {
-                                        a_cambiar[1] += padre1.bite[j];
-                                        a_cambiar[0] += padre2.bite[j];
+                                        if (j >= uno && j <= dos)
+                                        {
+                                            a_cambiar[1] += padre1.bite[j];
+                                            a_cambiar[0] += padre2.bite[j];
+                                        }
+                                        else
+                                        {
+                                            a_cambiar[0] += padre1.bite[j];
+                                            a_cambiar[1] += padre2.bite[j];
+                                        }
                                     }
-                                    else
-                                    {
-                                        a_cambiar[0] += padre1.bite[j];
-                                        a_cambiar[1] += padre2.bite[j];
-                                    }
+                                    catch (Exception) { }
                                 }
                             }
                             else
                             {
-                                for (int j = 0; j < auxPadre.bite.Length - 1; j++)
-                                {
-                                    if (j <= dos || j >= uno)
+                                try
+                                { 
+                                    for (int j = 0; j < auxPadre.bite.Length - 1; j++)
                                     {
-                                        a_cambiar[1] += padre1.bite[j];
-                                        a_cambiar[0] += padre2.bite[j];
-                                    }
+                                        if (j <= dos || j >= uno)
+                                        {
+                                            a_cambiar[1] += padre1.bite[j];
+                                            a_cambiar[0] += padre2.bite[j];
+                                        }
 
-                                    else
-                                    {
-                                        a_cambiar[0] += padre1.bite[j];
-                                        a_cambiar[1] += padre2.bite[j];
+                                        else
+                                        {
+                                            a_cambiar[0] += padre1.bite[j];
+                                            a_cambiar[1] += padre2.bite[j];
+                                        }
                                     }
-                                }
+                                }catch (Exception) { }
                             }
 
                             if (combinaciones == null)

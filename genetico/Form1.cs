@@ -342,6 +342,9 @@ namespace genetico
                                                         case 3:
                                                             mochila.reparacion_ordenada();
                                                             break;
+                                                        case 4:
+                                                            mochila.reparacion_ordenada_recargado();
+                                                            break;
                                                         default:
                                                             break;
                                                     }
@@ -355,12 +358,14 @@ namespace genetico
                                                 } while (con_gen <= generaciones);
 
                                                 lblX.Text = "";
+                                                //richTextBox1.Text = "";
 
                                                 string aux = mochila.imprimir_ganadores();
 
                                                 if (aux != "")
                                                 {
                                                     lblX.Text = aux;
+                                                    //richTextBox1.Text = aux;
                                                 }
 
                                                 mochila.reset_1();
